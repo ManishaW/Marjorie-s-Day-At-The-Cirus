@@ -42,13 +42,13 @@ public class player_controls_script : MonoBehaviour {
 		mcAnim.SetBool("running", running);
 		mcAnim.SetBool("isGrounded", grounded);
 
-		if (Input.GetKeyDown ("joystick 1 button 0")) {
+		if (Input.GetKeyDown ("joystick 1 button 0") && grounded == true) {
 			Debug.Log  ("A pressed");
 			//jump
 			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 10), ForceMode2D.Impulse);
 		}
 
-		if ((Input.GetKey (KeyCode.UpArrow))) {
+		if ((Input.GetKey (KeyCode.UpArrow)) && grounded == true) {
 			string[] names = Input.GetJoystickNames ();
 			if ((names.Length < 1) && (grounded == true)) {
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 10), ForceMode2D.Impulse);
@@ -71,6 +71,7 @@ public class player_controls_script : MonoBehaviour {
 
 		if (Input.GetKeyDown ("joystick 1 button 3") || Input.GetKeyDown ("s")) {
 			timer = Time.time;
+			Debug.Log ("test");
 		
 		
 		} else if (Input.GetKey ("joystick 1 button 3") || Input.GetKey("s")) {
@@ -163,8 +164,16 @@ public class player_controls_script : MonoBehaviour {
 
 		if(col.tag == "ground" ){//||col.tag == "crate" ){
 			grounded = true;
+			Debug.Log ("grounded rn");
+		}
+
+		if(col.tag == "death" ){//||col.tag == "crate" ){
+			SceneManager.LoadScene(2);
 		}
 	}
+
+
+
 	IEnumerator jackPop(){
 		float random = Random.Range (5f, 15.0f);
 		yield return new WaitForSeconds(random);
@@ -174,6 +183,7 @@ public class player_controls_script : MonoBehaviour {
 
 	}
 	void OnCollisionEnter2D(Collision2D col){
+		Debug.Log(col.collider.tag);
 		if (col.collider.tag == "crate") {
 			Debug.Log(Mathf.Round (Input.GetAxisRaw ("Crouch")));
 			if ((Mathf.Round (Input.GetAxisRaw ("Crouch")) < 0)) {
@@ -183,6 +193,8 @@ public class player_controls_script : MonoBehaviour {
 				
 			}
 		}
+
+	
 
 	}
 

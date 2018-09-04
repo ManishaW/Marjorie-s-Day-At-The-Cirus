@@ -10,6 +10,7 @@ TagManager:
   - enemy_throw
   - crate
   - jack
+  - death
   layers:
   - Default
   - TransparentFX
