@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using XInputDotNetPure;
+//using XInputDotNetPure;
 
 public class player_controls_script : MonoBehaviour {
 	public float panSpeed = 20f;
@@ -126,9 +126,9 @@ public class player_controls_script : MonoBehaviour {
 	}
 
 	IEnumerator vibrateOneSec(){
-		XInputDotNetPure.GamePad.SetVibration (0, 1, 1);  
+//		XInputDotNetPure.GamePad.SetVibration (0, 1, 1);  
 		yield return new WaitForSeconds(1);
-		XInputDotNetPure.GamePad.SetVibration (0, 0, 0);
+//		XInputDotNetPure.GamePad.SetVibration (0, 0, 0);
 
 
 
