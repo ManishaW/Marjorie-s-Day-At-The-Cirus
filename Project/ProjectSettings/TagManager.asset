@@ -11,6 +11,7 @@ TagManager:
   - crate
   - jack
   - death
+  - surface
   layers:
   - Default
   - TransparentFX
