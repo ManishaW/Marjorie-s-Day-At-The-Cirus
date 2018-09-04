@@ -191,6 +191,16 @@ public class player_controls_script : MonoBehaviour {
 		if(col.tag == "death" ){
 			SceneManager.LoadScene(2);
 		}
+
+		if(col.tag == "enemy" && attacking){
+			Debug.Log("HIT THE ENEMYYY");
+		}
+
+		if(col.tag == "enemy_throw" && attacking){
+			Destroy(col.gameObject);
+			Debug.Log("hit enemy throw!!!!!!!");
+		}
+
 	}
 
 

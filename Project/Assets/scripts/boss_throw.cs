@@ -32,7 +32,11 @@ public class boss_throw : MonoBehaviour {
 			}
 		}
 	}
-
+	void OnTriggerEnter2D(Collider2D col){
+		if(col.tag == "Player"){
+			Destroy(this.gameObject);
+		}
+	}
 	public void getMCPosition(GameObject mainChar){
 
 		mc = mainChar;		
