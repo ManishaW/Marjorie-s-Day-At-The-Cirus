@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: idle
+  m_Name: maj_attack
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
     - time: 0
       value: {fileID: 21300000, guid: 2b9f94aa065b1844c93d5db7f1b3e906, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: f476ee46822aba14380c15073ca4f216, type: 3}
+      value: {fileID: 21300000, guid: 96055800ad9ad114784cf1ab6792f649, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,7 +42,7 @@ AnimationClip:
       isPPtrCurve: 1
     pptrCurveMapping:
     - {fileID: 21300000, guid: 2b9f94aa065b1844c93d5db7f1b3e906, type: 3}
-    - {fileID: 21300000, guid: f476ee46822aba14380c15073ca4f216, type: 3}
+    - {fileID: 21300000, guid: 96055800ad9ad114784cf1ab6792f649, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

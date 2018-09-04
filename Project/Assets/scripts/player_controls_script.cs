@@ -14,6 +14,7 @@ public class player_controls_script : MonoBehaviour {
 	private Animator mcAnim;
 	private bool running;
 	private bool grounded;
+	private bool attacking;
 	AudioSource [] audioData;
 	public GameObject marjHead;
 	Animator animHeadBobble;
@@ -25,6 +26,7 @@ public class player_controls_script : MonoBehaviour {
 		mcAnim = gameObject.GetComponent<Animator>();
 		running = false;
 		grounded = true;
+		attacking = false;
 		audioData = GetComponents<AudioSource> ();
 		animHeadBobble = marjHead.GetComponent<Animator> ();
 	}
@@ -39,8 +41,10 @@ public class player_controls_script : MonoBehaviour {
 		float moveLR = Input.GetAxisRaw ("Horizontal") * speed;
 		Vector3 pos = transform.position;
 		Quaternion rot = transform.rotation;
+		
 		mcAnim.SetBool("running", running);
 		mcAnim.SetBool("isGrounded", grounded);
+		mcAnim.SetBool("attack", attacking);
 
 		if (Input.GetKeyDown ("joystick 1 button 0") && grounded == true) {
 			Debug.Log  ("A pressed");
@@ -66,7 +70,12 @@ public class player_controls_script : MonoBehaviour {
 		if (Input.GetKeyDown ("joystick 1 button 2") || Input.GetKeyDown("space")) {
 			Debug.Log  ("X or / pressed");
 			//whip
+			attacking = true;
+		} else {
+			//not whippin
+			attacking = false;
 		}
+
 		if (Input.GetKeyDown ("joystick 1 button 4")) {
 //			Debug.Log ("pressed B or enter");
 
@@ -174,7 +183,7 @@ public class player_controls_script : MonoBehaviour {
 			StartCoroutine (jackPop ());
 		}
 
-		if(col.tag == "ground" ){
+		if(col.tag == "surface" ){
 			grounded = true;
 			Debug.Log ("grounded enter");
 		}
@@ -216,7 +225,7 @@ public class player_controls_script : MonoBehaviour {
 			col.isTrigger = false;
 		}
 
-		if(col.tag == "ground"){
+		if(col.tag == "surface"){
 			grounded = false;
 			print ("here exit");
 		}
