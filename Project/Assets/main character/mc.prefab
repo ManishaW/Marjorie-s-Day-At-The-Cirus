@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4833370340990750}
   - component: {fileID: 212890533680127434}
-  - component: {fileID: 114412344228785636}
   - component: {fileID: 50431311240336328}
   - component: {fileID: 61327263374935436}
   - component: {fileID: 95642626633612130}
@@ -106,26 +105,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114412344228785636
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1562575066461650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d3128cd0b5de849b6912a85a424615, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panSpeed: 20
-  speed: 4
-  popcornToCollect:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  mainCam: {fileID: 0}
 --- !u!212 &212890533680127434
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -16,7 +16,10 @@ public class camera_follow_script : MonoBehaviour {
 		targetPos.x += 3f;
 
 //		targetPos.x = 
-		transform.position = Vector3.SmoothDamp (transform.position, targetPos, ref velocity, smoothTime);
+		if (targetPos.y>-0.94f && targetPos.x > -2.45f){
+			transform.position = Vector3.SmoothDamp (transform.position, targetPos, ref velocity, smoothTime);
+
+		}
 
 	
 	}

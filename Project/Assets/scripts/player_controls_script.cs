@@ -14,18 +14,19 @@ public class player_controls_script : MonoBehaviour {
 	private Animator mcAnim;
 	private bool running;
 	private bool grounded;
-	AudioSource audioData;
-
+	AudioSource [] audioData;
+	public GameObject marjHead;
+	Animator animHeadBobble;
 	// Use this for initialization
 	void Start () {
 		global_script.popcornCount = 0;
 		global_script.allowScream = false;
 		global_script.healthBar = 100;
 		mcAnim = gameObject.GetComponent<Animator>();
-//		print (popcornToCollect.Length);
 		running = false;
 		grounded = true;
-		audioData = GetComponent<AudioSource> ();
+		audioData = GetComponents<AudioSource> ();
+		animHeadBobble = marjHead.GetComponent<Animator> ();
 	}
 
 	void FixedUpdate () {
@@ -49,15 +50,21 @@ public class player_controls_script : MonoBehaviour {
 
 		if ((Input.GetKey (KeyCode.UpArrow)) && grounded == true) {
 			string[] names = Input.GetJoystickNames ();
-			if ((names.Length < 1) && (grounded == true)) {
+			if ((names.Length < 1) && (grounded == true))  {
 				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 10), ForceMode2D.Impulse);
+			}
+			if (names.Length > 0) {
+				if (names[0] == "" && grounded == true){
+					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 10), ForceMode2D.Impulse);
+					print("here3");
+				
+				}
 			}
 		}
 	
 
 		if (Input.GetKeyDown ("joystick 1 button 2") || Input.GetKeyDown("space")) {
 			Debug.Log  ("X or / pressed");
-
 			//whip
 		}
 		if (Input.GetKeyDown ("joystick 1 button 4")) {
@@ -82,9 +89,12 @@ public class player_controls_script : MonoBehaviour {
 					StartCoroutine(mainCam.GetComponent<CameraShake> ().Shake());
 					global_script.popcornCount = 0;
 					global_script.allowScream = false;
-				
+					for (int x = 0; x < 5; x++) {
+						popcornToCollect [x].GetComponent<SpriteRenderer> ().color = Color.black;
+					}
+					audioData[0].Play ();
+					animHeadBobble.enabled = false;
 
-					audioData.Play ();
 				}
 
 			}
@@ -118,7 +128,6 @@ public class player_controls_script : MonoBehaviour {
 		transform.position = pos;
 
 		if (global_script.healthBar <= 0) {
-			Debug.Log ("YOU DEADDD");
 			SceneManager.LoadScene(2);
 		}
 	}
@@ -136,20 +145,25 @@ public class player_controls_script : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
+		print (col.tag);
 		if (col.tag == "enemy") {
 			global_script.healthBar -= 10;
 			print (global_script.healthBar);
 		}
 		if (col.tag == "popcorn_energy") {
-			if (global_script.popcornCount <= 5  && global_script.popcornCount >0 ) {
+			audioData[1].Play ();
+
+			if (global_script.popcornCount <= 5 && global_script.popcornCount > 0) {
 				print ("popcorn update" + global_script.popcornCount);
-				popcornToCollect [global_script.popcornCount-1].GetComponent<SpriteRenderer> ().color = Color.white;
-				if(global_script.popcornCount == 5){
+				popcornToCollect [global_script.popcornCount - 1].GetComponent<SpriteRenderer> ().color = Color.white;
+				if (global_script.popcornCount == 5) {
+					animHeadBobble.enabled = true;
 					global_script.allowScream = true;
 				
 
 				}
-			}
+			} 
+
 		}
 
 		if(col.tag == "enemy_throw"){
@@ -162,10 +176,10 @@ public class player_controls_script : MonoBehaviour {
 
 		if(col.tag == "ground" ){
 			grounded = true;
-			Debug.Log ("grounded rn");
+			Debug.Log ("grounded enter");
 		}
 
-		if(col.tag == "death" ){//||col.tag == "crate" ){
+		if(col.tag == "death" ){
 			SceneManager.LoadScene(2);
 		}
 	}
@@ -180,21 +194,21 @@ public class player_controls_script : MonoBehaviour {
 
 
 	}
-	void OnCollisionEnter2D(Collision2D col){
-		Debug.Log(col.collider.tag);
-		if (col.collider.tag == "crate") {
-			Debug.Log(Mathf.Round (Input.GetAxisRaw ("Crouch")));
-			if ((Mathf.Round (Input.GetAxisRaw ("Crouch")) < 0)) {
-				col.collider.isTrigger = true;
-
-			} else if ((Mathf.Round (Input.GetAxisRaw ("Crouch")) > 0)) {
-				
-			}
-		}
-
-	
-
-	}
+//	void OnCollisionEnter2D(Collision2D col){
+//		Debug.Log(col.collider.tag);
+//		if (col.collider.tag == "crate") {
+//			Debug.Log(Mathf.Round (Input.GetAxisRaw ("Crouch")));
+//			if ((Mathf.Round (Input.GetAxisRaw ("Crouch")) < 0)) {
+//				col.collider.isTrigger = true;
+//
+//			} else if ((Mathf.Round (Input.GetAxisRaw ("Crouch")) > 0)) {
+//				
+//			}
+//		}
+//
+//	
+//
+//	}
 
 	void OnTriggerExit2D(Collider2D col)
 	{
@@ -202,8 +216,9 @@ public class player_controls_script : MonoBehaviour {
 			col.isTrigger = false;
 		}
 
-		if(col.tag == "ground"){//|| col.tag == "crate"){
+		if(col.tag == "ground"){
 			grounded = false;
+			print ("here exit");
 		}
 	}
 
