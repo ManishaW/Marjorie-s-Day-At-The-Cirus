@@ -15,7 +15,6 @@ public class player_controls_script : MonoBehaviour {
 	private bool running;
 	private bool grounded;
 	AudioSource audioData;
-	public GameObject can;
 
 	// Use this for initialization
 	void Start () {
@@ -120,7 +119,6 @@ public class player_controls_script : MonoBehaviour {
 
 		if (global_script.healthBar <= 0) {
 			Debug.Log ("YOU DEADDD");
-//			can.SetActive(true);
 			SceneManager.LoadScene(2);
 		}
 	}
