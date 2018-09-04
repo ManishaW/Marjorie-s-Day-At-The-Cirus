@@ -174,7 +174,7 @@ public class player_controls_script : MonoBehaviour {
 			StartCoroutine (jackPop ());
 		}
 
-		if(col.tag == "ground" ){
+		if(col.tag == "surface" ){
 			grounded = true;
 			Debug.Log ("grounded enter");
 		}
@@ -216,7 +216,7 @@ public class player_controls_script : MonoBehaviour {
 			col.isTrigger = false;
 		}
 
-		if(col.tag == "ground"){
+		if(col.tag == "surface"){
 			grounded = false;
 			print ("here exit");
 		}
