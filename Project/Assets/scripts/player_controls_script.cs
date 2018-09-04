@@ -162,7 +162,7 @@ public class player_controls_script : MonoBehaviour {
 			StartCoroutine (jackPop ());
 		}
 
-		if(col.tag == "ground" ){//||col.tag == "crate" ){
+		if(col.tag == "ground" ){
 			grounded = true;
 			Debug.Log ("grounded rn");
 		}

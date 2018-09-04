@@ -619,7 +619,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0758e51b2f1b40f4e9fb6d2d2a3aa4e9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.65
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -782,6 +782,7 @@ GameObject:
   - component: {fileID: 306598856}
   - component: {fileID: 306598855}
   - component: {fileID: 306598857}
+  - component: {fileID: 306598858}
   m_Layer: 0
   m_Name: block2-01
   m_TagString: ground
@@ -871,6 +872,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.300989, y: 5.3009787}
   m_EdgeRadius: 0
+--- !u!50 &306598858
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306598854}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &348111797
 Prefab:
   m_ObjectHideFlags: 0
@@ -1086,6 +1107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 727041525}
   - component: {fileID: 727041524}
+  - component: {fileID: 727041526}
   m_Layer: 0
   m_Name: blocks
   m_TagString: ground
@@ -1133,6 +1155,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &727041526
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 727041523}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &742941270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2524,6 +2566,7 @@ GameObject:
   - component: {fileID: 2000461567}
   - component: {fileID: 2000461566}
   - component: {fileID: 2000461568}
+  - component: {fileID: 2000461569}
   m_Layer: 0
   m_Name: block-01
   m_TagString: ground
@@ -2613,6 +2656,26 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.576129, y: 5.4092884}
   m_EdgeRadius: 0
+--- !u!50 &2000461569
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2000461565}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &2082084768
 Prefab:
   m_ObjectHideFlags: 0
