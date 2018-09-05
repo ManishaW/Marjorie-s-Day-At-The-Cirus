@@ -36,7 +36,26 @@ public class main_menu_script : MonoBehaviour {
 
 
 	}
+	public void controlsClick()
+	{
+		//Output this to console when the Button is clicked
 
+		//load scene
+		SceneManager.LoadScene (3);
+
+
+
+	}
+	public void backClick()
+	{
+		//Output this to console when the Button is clicked
+
+		//load scene
+		SceneManager.LoadScene (0);
+
+
+
+	}
 	IEnumerator nextScene(){
 		yield return new WaitForSeconds(1);
 
