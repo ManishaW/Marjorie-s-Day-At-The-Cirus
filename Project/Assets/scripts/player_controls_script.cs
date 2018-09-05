@@ -42,6 +42,7 @@ public class player_controls_script : MonoBehaviour {
 		float moveLR = Input.GetAxisRaw ("Horizontal") * speed;
 		Vector3 pos = transform.position;
 		Quaternion rot = transform.rotation;
+		Rigidbody2D rb2d = gameObject.GetComponent<Rigidbody2D> ();
 		
 		mcAnim.SetBool("running", running);
 		mcAnim.SetBool("isGrounded", grounded);
@@ -50,19 +51,20 @@ public class player_controls_script : MonoBehaviour {
 		if (Input.GetKeyDown ("joystick 1 button 0") && grounded == true) {
 			Debug.Log  ("A pressed");
 			//jump
-			GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 10), ForceMode2D.Impulse);
+				rb2d.velocity = new Vector2 (0, 0);
+				rb2d.AddForce (new Vector2 (0, 8), ForceMode2D.Impulse);		
 		}
 
 		if ((Input.GetKey (KeyCode.UpArrow)) && grounded == true) {
 			string[] names = Input.GetJoystickNames ();
 			if ((names.Length < 1) && (grounded == true))  {
-				GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 10), ForceMode2D.Impulse);
+				rb2d.velocity = new Vector2 (0, 0);
+				rb2d.AddForce (new Vector2 (0, 8), ForceMode2D.Impulse);
 			}
 			if (names.Length > 0) {
 				if (names[0] == "" && grounded == true){
-					GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 10), ForceMode2D.Impulse);
-					print("here3");
-				
+					rb2d.velocity = new Vector2 (0, 0);
+					rb2d.AddForce (new Vector2 (0, 8), ForceMode2D.Impulse);
 				}
 			}
 		}
@@ -181,9 +183,14 @@ public class player_controls_script : MonoBehaviour {
 		}
 
 		if(col.tag == "enemy_throw"){
-			global_script.healthBar -= 10;
-			Debug.Log("current health ....." + global_script.healthBar);
-			audioData[3].Play ();
+			if(attacking){
+				Destroy(col.gameObject);
+				Debug.Log("hit enemy throw!!!!!!!");
+			}else{
+				global_script.healthBar -= 10;
+				Debug.Log("current health ....." + global_script.healthBar);
+				audioData[3].Play ();
+			}
 
 		}
 		if (col.tag == "jack") {
@@ -203,11 +210,6 @@ public class player_controls_script : MonoBehaviour {
 
 		if(col.tag == "enemy" && attacking){
 			Debug.Log("HIT THE ENEMYYY");
-		}
-
-		if(col.tag == "enemy_throw" && attacking){
-			Destroy(col.gameObject);
-			Debug.Log("hit enemy throw!!!!!!!");
 		}
 
 	}

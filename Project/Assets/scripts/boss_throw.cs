@@ -27,7 +27,7 @@ public class boss_throw : MonoBehaviour {
 				Space.World);
 
 			timer += Time.deltaTime;
-			if(timer >= 3){
+			if(timer >= 2){
 				Destroy(this.gameObject);
 			}
 		}
