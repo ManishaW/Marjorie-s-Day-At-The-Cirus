@@ -6,9 +6,9 @@ public class boss_controller : MonoBehaviour {
 
 	public GameObject mainCharLocation;
 	public Vector3 pos;
-
 	// Use this for initialization
 	void Start () {
+
 
 
 	}
@@ -26,6 +26,7 @@ public class boss_controller : MonoBehaviour {
 				spawnThrow();
 			}
 		}
+
 
 	}
 

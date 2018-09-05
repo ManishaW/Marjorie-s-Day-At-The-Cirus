@@ -18,6 +18,7 @@ public class player_controls_script : MonoBehaviour {
 	AudioSource [] audioData;
 	public GameObject marjHead;
 	Animator animHeadBobble;
+
 	// Use this for initialization
 	void Start () {
 		global_script.popcornCount = 0;
@@ -71,6 +72,8 @@ public class player_controls_script : MonoBehaviour {
 			Debug.Log  ("X or / pressed");
 			//whip
 			attacking = true;
+			audioData[2].Play ();
+
 		} else {
 			//not whippin
 			attacking = false;
@@ -158,6 +161,8 @@ public class player_controls_script : MonoBehaviour {
 		if (col.tag == "enemy") {
 			global_script.healthBar -= 10;
 			print (global_script.healthBar);
+			audioData[3].Play ();
+
 		}
 		if (col.tag == "popcorn_energy") {
 			audioData[1].Play ();
@@ -178,8 +183,12 @@ public class player_controls_script : MonoBehaviour {
 		if(col.tag == "enemy_throw"){
 			global_script.healthBar -= 10;
 			Debug.Log("current health ....." + global_script.healthBar);
+			audioData[3].Play ();
+
 		}
 		if (col.tag == "jack") {
+			audioData[3].Play ();
+
 			StartCoroutine (jackPop ());
 		}
 
@@ -196,7 +205,7 @@ public class player_controls_script : MonoBehaviour {
 
 
 	IEnumerator jackPop(){
-		float random = Random.Range (5f, 15.0f);
+		float random = Random.Range (0f, 3f);
 		yield return new WaitForSeconds(random);
 		Debug.Log ("pop"+random);
 
