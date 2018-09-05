@@ -15,6 +15,8 @@ public class player_controls_script : MonoBehaviour {
 	private bool running;
 	private bool grounded;
 	private bool attacking;
+	private bool scream;
+	private bool crouching;
 	AudioSource [] audioData;
 	public GameObject marjHead;
 	Animator animHeadBobble;
@@ -28,6 +30,8 @@ public class player_controls_script : MonoBehaviour {
 		running = false;
 		grounded = true;
 		attacking = false;
+		scream = false;
+		crouching = false;
 		audioData = GetComponents<AudioSource> ();
 		animHeadBobble = marjHead.GetComponent<Animator> ();
 	}
@@ -47,6 +51,7 @@ public class player_controls_script : MonoBehaviour {
 		mcAnim.SetBool("running", running);
 		mcAnim.SetBool("isGrounded", grounded);
 		mcAnim.SetBool("attack", attacking);
+		mcAnim.SetBool("screaming", scream);
 
 		if (Input.GetKeyDown ("joystick 1 button 0") && grounded == true) {
 			Debug.Log  ("A pressed");
@@ -99,6 +104,7 @@ public class player_controls_script : MonoBehaviour {
 
 			if (Time.time - timer > holdDur) {
 				if (global_script.allowScream == true) {
+					scream = true;
 					StartCoroutine (vibrateOneSec ());
 					StartCoroutine(mainCam.GetComponent<CameraShake> ().Shake());
 					global_script.popcornCount = 0;
@@ -108,7 +114,7 @@ public class player_controls_script : MonoBehaviour {
 					}
 					audioData[0].Play ();
 					animHeadBobble.enabled = false;
-
+					StartCoroutine (turnOffScream());
 				}
 
 			}
@@ -118,6 +124,7 @@ public class player_controls_script : MonoBehaviour {
 		if (moveLR > 0.5f || moveLR < -0.5f) {
 			if ((Mathf.Round (Input.GetAxisRaw ("Crouch")) < 0) || (Input.GetKey (KeyCode.LeftControl))) {
 				pos.x += moveLR / 50;
+				crouching = true;
 
 			} else {
 
@@ -136,6 +143,7 @@ public class player_controls_script : MonoBehaviour {
 			}
 		}else{
 			running = false;
+			crouching = false;
 		}
 
 				
@@ -154,7 +162,10 @@ public class player_controls_script : MonoBehaviour {
 
 
 	}
-
+	IEnumerator turnOffScream(){
+		yield return new WaitForSeconds(1);
+		scream = false;
+	}
 
 
 	void OnTriggerEnter2D(Collider2D col)
