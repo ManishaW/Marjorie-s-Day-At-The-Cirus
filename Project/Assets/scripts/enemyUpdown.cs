@@ -18,15 +18,23 @@ public class enemyUpdown : MonoBehaviour {
 	float bottom;
 
 	float speed = 3;
-
+	Renderer ren;
 	void Start()
 	{
 		top = 5 + transform.position.y;
 		bottom = -5 + transform.position.y;
+		ren = GetComponent<Renderer> ();
 	}
 
 	void Update () 
 	{
+		
+		if (global_script.isScreaming) {
+			if (ren.isVisible) {
+				Destroy (gameObject);
+			}
+		}
+
 		if (transform.position.y >=  top) {
 			direction = -1;
 			GetComponent<SpriteRenderer> ().flipX = true;

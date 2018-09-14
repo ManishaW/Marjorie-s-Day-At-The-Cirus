@@ -1,13 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\health_bar_monitor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\player_controls_script.cs">
     <Files>
-      <File FileName="Assets\scripts\player_controls_script.cs" Line="165" Column="12" />
       <File FileName="Assets\scripts\main_menu_script.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\boss_controller.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\boss_throw.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\health_bar_monitor.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\EnemySideToSide.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\camera_follow_script.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\enemyUpdown.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\player_controls_script.cs" Line="205" Column="4" />
+      <File FileName="Assets\scripts\enemySideToSide.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\global_script.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

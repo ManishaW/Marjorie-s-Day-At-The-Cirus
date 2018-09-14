@@ -301,7 +301,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bb9da9b158637aa44a2481941da53e35, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.546
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -403,7 +403,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 685, y: 283.95}
+  m_AnchoredPosition: {x: 575.3803, y: 283.95}
   m_SizeDelta: {x: 66.5, y: 24.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &127291946
@@ -524,7 +524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 714.61914, y: -18.001}
+  m_AnchoredPosition: {x: 605, y: -18.001}
   m_SizeDelta: {x: 78.3, y: 24.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &198646398
@@ -780,7 +780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 685, y: -309.45}
+  m_AnchoredPosition: {x: 575.3803, y: -309.45}
   m_SizeDelta: {x: 66.5, y: 24.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1359630885
@@ -821,7 +821,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1359630886}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 119100608}
+        m_MethodName: creds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1359630886

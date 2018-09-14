@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using XInputDotNetPure;
+using XInputDotNetPure;
 
 public class player_controls_script : MonoBehaviour {
 	public float panSpeed = 20f;
@@ -20,7 +20,7 @@ public class player_controls_script : MonoBehaviour {
 	AudioSource [] audioData;
 	public GameObject marjHead;
 	Animator animHeadBobble;
-
+	public bool yop;
 	// Use this for initialization
 	void Start () {
 		global_script.popcornCount = 0;
@@ -34,6 +34,7 @@ public class player_controls_script : MonoBehaviour {
 		crouching = false;
 		audioData = GetComponents<AudioSource> ();
 		animHeadBobble = marjHead.GetComponent<Animator> ();
+
 	}
 
 	void FixedUpdate () {
@@ -42,7 +43,6 @@ public class player_controls_script : MonoBehaviour {
 //				print("joystick 1 button "+i);
 //			}
 //		}
-
 		float moveLR = Input.GetAxisRaw ("Horizontal") * speed;
 		Vector3 pos = transform.position;
 		Quaternion rot = transform.rotation;
@@ -74,18 +74,16 @@ public class player_controls_script : MonoBehaviour {
 			}
 		}
 	
-
 		if (Input.GetKeyDown ("joystick 1 button 2") || Input.GetKeyDown("space")) {
-			Debug.Log  ("X or / pressed");
 			//whip
 			attacking = true;
 			audioData[2].Play ();
+			StartCoroutine (attack());
 
 		} else {
 			//not whippin
 			attacking = false;
 		}
-
 		if (Input.GetKeyDown ("joystick 1 button 4")) {
 //			Debug.Log ("pressed B or enter");
 
@@ -96,7 +94,6 @@ public class player_controls_script : MonoBehaviour {
 
 		if (Input.GetKeyDown ("joystick 1 button 3") || Input.GetKeyDown ("s")) {
 			timer = Time.time;
-			Debug.Log ("test");
 		
 		
 		} else if (Input.GetKey ("joystick 1 button 3") || Input.GetKey("s")) {
@@ -104,7 +101,11 @@ public class player_controls_script : MonoBehaviour {
 
 			if (Time.time - timer > holdDur) {
 				if (global_script.allowScream == true) {
+
 					scream = true;
+
+					global_script.isScreaming = true;
+
 					StartCoroutine (vibrateOneSec ());
 					StartCoroutine(mainCam.GetComponent<CameraShake> ().Shake());
 					global_script.popcornCount = 0;
@@ -153,12 +154,19 @@ public class player_controls_script : MonoBehaviour {
 			SceneManager.LoadScene(2);
 		}
 	}
-
+	IEnumerator attack(){
+		yop = true;
+		yield return new WaitForSeconds(0.5f);
+		yop = false;
+//		attacking = true;
+//		yield return new WaitForSeconds(0.5f);
+//		attacking = false;
+	}
 	IEnumerator vibrateOneSec(){
-//		XInputDotNetPure.GamePad.SetVibration (0, 1, 1);  
+		XInputDotNetPure.GamePad.SetVibration (0, 1, 1);  
 		yield return new WaitForSeconds(1);
-//		XInputDotNetPure.GamePad.SetVibration (0, 0, 0);
-
+		XInputDotNetPure.GamePad.SetVibration (0, 0, 0);
+		global_script.isScreaming = false;
 
 
 	}
@@ -170,18 +178,24 @@ public class player_controls_script : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		print (col.tag);
 		if (col.tag == "enemy") {
+			
 			global_script.healthBar -= 10;
 			print (global_script.healthBar);
 			audioData[3].Play ();
+			print (attacking);
+
+			if (yop == true) {
+				Destroy (col.gameObject);
+			}
+				
+		
 
 		}
 		if (col.tag == "popcorn_energy") {
 			audioData[1].Play ();
 
 			if (global_script.popcornCount <= 5 && global_script.popcornCount > 0) {
-				print ("popcorn update" + global_script.popcornCount);
 				popcornToCollect [global_script.popcornCount - 1].GetComponent<SpriteRenderer> ().color = Color.white;
 				if (global_script.popcornCount == 5) {
 					animHeadBobble.enabled = true;
@@ -194,25 +208,48 @@ public class player_controls_script : MonoBehaviour {
 		}
 
 		if(col.tag == "enemy_throw"){
-			if(attacking){
-				Destroy(col.gameObject);
-				Debug.Log("hit enemy throw!!!!!!!");
-			}else{
-				global_script.healthBar -= 10;
-				Debug.Log("current health ....." + global_script.healthBar);
-				audioData[3].Play ();
+
+//			if(attacking){
+//				Destroy(col.gameObject);
+//				Debug.Log("hit enemy throw!!!!!!!");
+//			}else{
+//				global_script.healthBar -= 10;
+//				Debug.Log("current health ....." + global_script.healthBar);
+//				audioData[3].Play ();
+//			}
+//
+			global_script.healthBar -= 10;
+			Debug.Log("current health ....." + global_script.healthBar);
+			audioData[3].Play ();
+			if (yop == true) {
+				Destroy (col.gameObject);
 			}
 
-		}
-		if (col.tag == "jack") {
-			audioData[3].Play ();
 
-			StartCoroutine (jackPop ());
+
 		}
+//		if (col.tag == "jack") {
+//			global_script.healthBar -= 10;
+//			if (yop == true) {
+//				Destroy (col.gameObject);
+//			}
+//
+//			audioData[3].Play ();
+////			if (yop == true) {
+////				Destroy (col.gameObject);
+////			}
+////			StartCoroutine (jackPop ());
+//
+//		}
 
 		if(col.tag == "surface" ){
 			grounded = true;
 			Debug.Log ("grounded enter");
+		}
+		if(col.tag == "bighands" ){
+			global_script.healthBar -= 15;
+
+			audioData[3].Play ();
 		}
 
 		if(col.tag == "death" ){

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class main_menu_script : MonoBehaviour {
 	public GameObject menuPic;
 	public Sprite otherMenuPic;
+	AudioSource [] music;
 	// Use this for initialization
 	void Start () {
 
@@ -13,7 +14,7 @@ public class main_menu_script : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		music = GetComponents<AudioSource> ();
 	}
 
 	public void PlayGameButtonOnClick()
@@ -22,7 +23,15 @@ public class main_menu_script : MonoBehaviour {
 		Debug.Log("You have clicked the button!");
 		//load scene
 		menuPic.GetComponent<SpriteRenderer> ().sprite = otherMenuPic;
+		music [1].Play ();
 		StartCoroutine (nextScene());
+
+
+	}
+	public void creds()
+	{
+
+		SceneManager.LoadScene (4);
 
 
 	}

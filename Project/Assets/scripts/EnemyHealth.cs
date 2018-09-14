@@ -2,19 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class global_script : MonoBehaviour {
-	public static int popcornCount;
-	public static bool allowScream;
-	public static float healthBar;
-	public static bool isScreaming;
+public class EnemyHealth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-
 }
